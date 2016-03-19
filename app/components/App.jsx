@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'node-uuid';
-//import Note from './Note.jsx';
+import Note from './Note.jsx';
 
 export default class App extends React.Component{
   
@@ -34,7 +34,9 @@ export default class App extends React.Component{
     	  <button onClick={this.addNote}>+</button>
     	  <ul>
     	    {notes.map(note => 
-    	    	<li key={note.id}>{note.task}</li>
+    	    	<li key={note.id}>
+    	    	  <Note task={note.task} />
+    	    	</li>
     	    )}
     	  </ul>
     	</div>
