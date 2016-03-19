@@ -3,9 +3,12 @@ import uuid from 'node-uuid';
 //import Note from './Note.jsx';
 
 export default class App extends React.Component{
-  render() {
-  //  return <Note />;
-    const notes = [
+  
+  constructor(props){
+  	super(props);
+
+  	this.state = {
+  	  notes: [
       {
       	id: uuid.v4(),
       	task: 'Learn Webpack'
@@ -17,11 +20,18 @@ export default class App extends React.Component{
       {
       	id: uuid.v4(),
       	task: 'Do laundry'
-      },
-    ];
+      }
+      ]
+  	}
+  }
+ 
 
+  render() {
+  //  return <Note />;
+    const notes = this.state.notes;
     return (
     	<div>
+    	  <button onClick={this.addNote}>+</button>
     	  <ul>
     	    {notes.map(note => 
     	    	<li key={note.id}>{note.task}</li>
@@ -30,5 +40,17 @@ export default class App extends React.Component{
     	</div>
     )
   }
+
+
+  addNote = () => {
+  	this.setState({
+  		notes: this.state.notes.concat([{
+  			id: uuid.v4(),
+  			task: 'New task1'
+  		}])
+  	}, () => console.log('set22 state!')
+  	)
+  }
+
 }
 
