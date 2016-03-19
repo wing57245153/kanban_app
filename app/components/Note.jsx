@@ -50,7 +50,7 @@ export default class Note extends React.Component{
     	const value = e.target.value;
 
     	if(this.props.onEdit){
-    		this.props.onEdit(value);
+    		this.props.onEdit(this.props.id, value);
     	}
 
     	this.setState({
