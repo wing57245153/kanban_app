@@ -1,18 +1,27 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import NoteActions from '../actions/NoteActions';
+import request from 'superagent';
 
 class NoteStore{
 	constructor(){
 		this.bindActions(NoteActions);
 		this.notes = [];
+
+		var url = 'https://api.github.com/repos/visionmedia/superagent';
+        request
+        .get(url)
+        .end(function(err, response){
+            console.log('Response ok:', response.ok);
+            console.log('Response text:', response.text);
+        });
 	}
 
 	create(note){
 		const notes = this.notes;
 		note.id = uuid.v4();
 
-		
+
 		this.setState({
 			notes: notes.concat(note)
 		});
